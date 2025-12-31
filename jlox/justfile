@@ -1,0 +1,9 @@
+SRC := src
+OUT := out
+MAIN := com.neowsl.lox.Lox
+
+build:
+    javac -d {{OUT}} $(find {{SRC}} -name '*.java')
+
+run: build
+    java -cp {{OUT}} {{MAIN}}

@@ -1,9 +1,15 @@
-SRC := src
-OUT := out
-MAIN := com.neowsl.lox.Lox
+SRC := "com"
+OUT := "out"
+MAIN := "com.neowsl.lox.Lox"
+GENERATE_AST := "com.neowsl.tool.GenerateAst"
 
 build:
     javac -d {{OUT}} $(find {{SRC}} -name '*.java')
 
-run: build
+exec: build
     java -cp {{OUT}} {{MAIN}}
+
+generate_ast:
+    rm com/neowsl/lox/Expr.java
+    just build
+    java -cp {{OUT}} {{GENERATE_AST}} com/neowsl/lox
